@@ -32,3 +32,14 @@ python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
 python.exe .\run.py
+```
+## Credenciales de usuario y consideraciones importantes
+- Usuario Administrador: admin@example.com
+- Contraseña Administrador: Pa$$w0rd2024!
+Usuario sin Privilegios y contraseñas:
+- usuario2@usuario2.com - Pa$$w0rd2024!
+- usuario3@usuario3.com - Pa$$w0rd2024!
+- usuario4@usuario4.com - Pa$$w0rd2024!
+- usuario5@usuario5.com - Pa$$w0rd2024!
+
+Para el correcto funcionamiento de la API de imagenes los títulos de las reseñas deben ser introducidos en inglés.
