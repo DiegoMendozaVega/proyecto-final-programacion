@@ -3,43 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Asumiendo que usas el mismo CSS que para el registro -->
+  <!-- Se utiliza el mismo CSS que para el registro -->
   <link rel="stylesheet" href="{{ url_for('static', filename='registro.css') }}">
   <title>Nueva Reseña</title>
 </head>
 <body>
-  <!-- Contenedor del formulario -->
   <div class="form-container">
     <form method="POST" class="form">
+      {{ form.hidden_tag() }}
       <p class="form-title">Añadir Reseña</p>
+      
       <!-- Campo para el título de la película -->
       <div class="input-container">
-        <input type="text" name="titulo" placeholder="Título de la película" required>
+        {{ form.titulo(class="form-control", placeholder="Título de la película") }}
+        {% for error in form.titulo.errors %}
+          <span class="error">{{ error }}</span>
+        {% endfor %}
       </div>
+      
       <!-- Campo para el año -->
       <div class="input-container">
-        <input type="number" name="anio" placeholder="Año" required>
+        {{ form.anio(class="form-control", placeholder="Año") }}
+        {% for error in form.anio.errors %}
+          <span class="error">{{ error }}</span>
+        {% endfor %}
       </div>
+      
       <!-- Campo para la duración -->
       <div class="input-container">
-        <input type="number" name="duracion" placeholder="Duración (minutos)" required>
+        {{ form.duracion(class="form-control", placeholder="Duración (minutos)") }}
+        {% for error in form.duracion.errors %}
+          <span class="error">{{ error }}</span>
+        {% endfor %}
       </div>
+      
       <!-- Campo para el género -->
       <div class="input-container">
-        <input type="text" name="genero" placeholder="Género" required>
+        {{ form.genero(class="form-control", placeholder="Género") }}
+        {% for error in form.genero.errors %}
+          <span class="error">{{ error }}</span>
+        {% endfor %}
       </div>
+      
       <!-- Campo para la puntuación -->
       <div class="input-container">
-        <input type="number" step="0.1" name="puntuacion" placeholder="Puntuación (0-5)" required>
+        {{ form.puntuacion(class="form-control", placeholder="Puntuación (0-5)") }}
+        {% for error in form.puntuacion.errors %}
+          <span class="error">{{ error }}</span>
+        {% endfor %}
       </div>
+      
       <!-- Campo para la reseña (texto) -->
       <div class="input-container">
-        <textarea name="resena" placeholder="Escribe tu reseña" required></textarea>
+        {{ form.resena(class="form-control", placeholder="Escribe tu reseña") }}
+        {% for error in form.resena.errors %}
+          <span class="error">{{ error }}</span>
+        {% endfor %}
       </div>
+      
       <!-- Botón para publicar -->
       <div class="button-container">
-        <button type="submit" class="submit">Publicar Reseña</button>
+        {{ form.submit(class="submit") }}
       </div>
+      
       <!-- Enlace para volver a la lista de reseñas -->
       <p class="signup-link">
         <a href="{{ url_for('resenas') }}">Volver a mis reseñas</a>

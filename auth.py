@@ -8,7 +8,7 @@ import os
 import uuid
 import re
 import requests
-from forms.forms import FormularioRegistro
+from forms.forms import FormularioRegistro, ResenaPeliculaForm
 
 
 #!  Ruta para dar la bienvenida a usuarios no admin
@@ -122,13 +122,11 @@ def get_movie_poster(title):
         return data.get('Poster')
     else:
         return None
-
-
 #!--------------------------------------#
+
+
 #! Ruta para añadir una reseña
 #!--------------------------------------#
-
-
 def get_movie_poster(title):
     api_key = 'cddd798'  # Reemplaza con tu API key de OMDb
     url = f"http://www.omdbapi.com/?t={title}&apikey={api_key}"
@@ -141,19 +139,18 @@ def get_movie_poster(title):
         return None
 
 
-#! Ruta para añadir una reseña
-#!--------------------------------------#
 @app.route('/resena/add', methods=['GET', 'POST'])
 @login_required
 def nueva_resena():
-    if request.method == 'POST':
-        titulo = request.form.get('titulo')
-        anio = request.form.get('anio')
-        duracion = request.form.get('duracion')
-        genero = request.form.get('genero')
-        puntuacion = request.form.get('puntuacion')
-        resena = request.form.get('resena')
-        
+    form = ResenaPeliculaForm()
+    if form.validate_on_submit():
+        titulo = form.titulo.data
+        anio = form.anio.data
+        duracion = form.duracion.data
+        genero = form.genero.data
+        puntuacion = form.puntuacion.data
+        resena_texto = form.resena.data
+
         imagen_path = None
         # Buscar la URL del póster usando el título
         poster_url = get_movie_poster(titulo)
@@ -171,15 +168,15 @@ def nueva_resena():
                 with open(image_full_path, 'wb') as f:
                     f.write(response.content)
                 # Guardar la ruta relativa, por ejemplo: images/archivo.jpg
-                imagen_path = os.path.join('images', filename).replace ('\\', '/')
-        
+                imagen_path = os.path.join('images', filename).replace('\\', '/')
+
         nueva_resena = ResenaPelicula(
             titulo=titulo,
             anio=anio,
             duracion=duracion,
             genero=genero,
             puntuacion=puntuacion,
-            resena=resena,
+            resena=resena_texto,
             imagen=imagen_path,  # Guarda la ruta de la imagen
             id_usuario=current_user.id
         )
@@ -187,7 +184,7 @@ def nueva_resena():
         db.session.commit()
         flash("Reseña añadida exitosamente", "success")
         return redirect(url_for('resenas'))
-    return render_template('nueva_reseña.html')
+    return render_template('nueva_reseña.html', form=form)
 #!--------------------------------------#
 
 
