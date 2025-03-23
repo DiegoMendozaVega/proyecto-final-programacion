@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='registro.css') }}">
+    <title>Formulario de registro</title>
+</head>
+<body>
+    <!-- Contenedor del formulario -->
+    <div class="form-container">
+        <form method="POST" class="form">
+            <p class="form-title">Crea una cuenta</p>
+            <!-- Contenedor para el nombre -->
+            <div class="input-container">
+                <input type="text" name="nombre" placeholder="Nombre" required>
+            </div>
+            <!-- Contenedor para los apellidos -->
+            <div class="input-container">
+                <input type="text" name="apellidos" placeholder="Apellidos"  required><br>
+            </div>
+            <!-- Contenedor para el teléfono -->
+            <div class="input-container">
+                <input type="text" name="telefono" placeholder="Teléfono" required><br>
+            </div>
+            <!-- Contenedor para el email -->
+            <div class="input-container">
+                <input type="email" name="email" placeholder="Introduce tu correo" required><br>
+            </div>
+            <!-- Contenedor para la contraseña -->
+            <div class="input-container">
+                <input type="password" name="contraseña" placeholder="Contraseña" required><br>
+            </div>
+            <div class="button-container">
+            <!-- Botón de enviar -->
+            <button type="submit" class="submit">Registrarse</button>
+            </div>
+            <!-- Enlace para ir a la página de inicio de sesión -->
+            <p class="signup-link">
+                ¿Ya tienes una cuenta? 
+                <a href="{{ url_for('login') }}">Inicia sesión</a>
+            </p>
+        </form>
+    </div>
+    <footer>
+        SA Diego Mendoza Vega @ 2025
+    </footer>
+</body>
+</html>

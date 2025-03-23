@@ -1,0 +1,11 @@
+html, body {
+    height: 100%;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  /* El contenido principal ocupará el espacio disponible para empujar el footer hacia abajo */
+  .content {
+    flex: 1;
+  }

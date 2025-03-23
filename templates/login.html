@@ -1,0 +1,43 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Formulario de inicio de sesión</title>
+</head>
+<body>
+    <div class="form-container">
+        <form method="POST" class="form">
+            <p class="form-title">Inicie sesión con su cuenta</p>
+            <!-- Contenedor para el email -->
+            <div class="input-container">
+                <label for="email"></label><input type="email" name="email"  placeholder="Introduce un email" required>
+                <span></span>
+            </div>
+            <!-- Contenedor para la contraseña -->
+            <div class="input-container">
+                <label for="contraseña"></label><input type="password" name="contraseña" placeholder="Introduce su contraseña" required><br>
+                <span></span>
+            </div>
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="submit">Entrar</button>
+            <!-- Enlace para ir a la página de registro -->
+            <p class="signup-link">
+                ¿Aún no tienes cuenta? 
+                <a href="{{ url_for('register') }}">Regístrate</a>
+            </p>
+            <!-- Enlace para ir a la página de inicio -->
+            <p class="signup-link">
+                <a href="{{ url_for('home') }}">Volver a Inicio</a>
+            </p>
+
+        </form>
+    </div>
+</div>
+<footer >
+    SA Diego Mendoza Vega @ 2025
+</footer>
+</body>
+</html>

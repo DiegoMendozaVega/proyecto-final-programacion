@@ -1,0 +1,79 @@
+body{
+    background-color: #212121; 
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items:center; 
+    justify-content: center; 
+    height: 100vh; 
+    margin: 250px;
+}
+.container{
+    background-color: #212121; 
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    align-items:center; 
+    justify-content: center; 
+    height: 100vh; 
+
+}
+.display-3 {
+    font-size: calc(1.525rem + 3.3vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+.button-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.btn {
+    background-color: #f0f0f0;
+    color: #212121;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 10px;
+    border-radius: 5px;
+}
+.btn:hover {
+    background-color: #e0e0e0;
+}
+img {
+    width: 200px;
+    height:auto;
+    margin-bottom: 50px;
+}
+hr {
+    width: 80%;
+    border: 1px solid #f0f0f0;
+    margin: 20px 20px;
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #f0f0f0, transparent);
+}
+#reseñas{
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    margin: 20px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+footer{
+    position:fixed; 
+    bottom: 10px; 
+    width: 100%; 
+    text-align: left; 
+    font-size: 0.8rem; 
+    color: #888; 
+    padding-left: 10px;
+}
