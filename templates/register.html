@@ -4,38 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='registro.css') }}">
-    <title>Formulario de registro</title>
+    <title>Registro de Usuario</title>
 </head>
 <body>
-    <!-- Contenedor del formulario -->
     <div class="form-container">
         <form method="POST" class="form">
+            {{ form.hidden_tag() }}
             <p class="form-title">Crea una cuenta</p>
-            <!-- Contenedor para el nombre -->
+            
             <div class="input-container">
-                <input type="text" name="nombre" placeholder="Nombre" required>
+                {{ form.nombre(size=32, placeholder="Nombre") }}
+                {% for error in form.nombre.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
             </div>
-            <!-- Contenedor para los apellidos -->
+            
             <div class="input-container">
-                <input type="text" name="apellidos" placeholder="Apellidos"  required><br>
+                {{ form.apellidos(size=32, placeholder="Apellidos") }}
+                {% for error in form.apellidos.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
             </div>
-            <!-- Contenedor para el teléfono -->
+            
             <div class="input-container">
-                <input type="text" name="telefono" placeholder="Teléfono" required><br>
+                {{ form.telefono(size=32, placeholder="Teléfono") }}
+                {% for error in form.telefono.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
             </div>
-            <!-- Contenedor para el email -->
+            
             <div class="input-container">
-                <input type="email" name="email" placeholder="Introduce tu correo" required><br>
+                {{ form.email(size=32, placeholder="Introduce tu correo") }}
+                {% for error in form.email.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
             </div>
-            <!-- Contenedor para la contraseña -->
+            
             <div class="input-container">
-                <input type="password" name="contraseña" placeholder="Contraseña" required><br>
+                {{ form.contraseña(size=32, placeholder="Contraseña") }}
+                {% for error in form.contraseña.errors %}
+                    <span class="error">{{ error }}</span>
+                {% endfor %}
             </div>
+            
             <div class="button-container">
-            <!-- Botón de enviar -->
-            <button type="submit" class="submit">Registrarse</button>
+                {{ form.submit(class="submit") }}
             </div>
-            <!-- Enlace para ir a la página de inicio de sesión -->
+            
             <p class="signup-link">
                 ¿Ya tienes una cuenta? 
                 <a href="{{ url_for('login') }}">Inicia sesión</a>
@@ -43,7 +58,7 @@
         </form>
     </div>
     <footer>
-        SA Diego Mendoza Vega @ 2025
+        SA Diego Mendoza Vega © 2025
     </footer>
 </body>
 </html>

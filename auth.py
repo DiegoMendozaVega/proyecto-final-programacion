@@ -8,6 +8,7 @@ import os
 import uuid
 import re
 import requests
+from forms.forms import FormularioRegistro
 
 
 #!  Ruta para dar la bienvenida a usuarios no admin
@@ -51,18 +52,22 @@ def login():
 #!--------------------------------------#
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        apellidos = request.form.get('apellidos')
-        telefono = request.form.get('telefono')
-        email = request.form.get('email')
-        contraseña = request.form.get('contraseña')
+    form = FormularioRegistro()
+    if form.validate_on_submit():
+        nombre = form.nombre.data
+        apellidos = form.apellidos.data
+        telefono = form.telefono.data
+        email = form.email.data
+        contraseña = form.contraseña.data
+
         hashed_contraseña = generate_password_hash(contraseña, method='pbkdf2:sha256', salt_length=8)
+
         # Verificar si ya existe un usuario con este email
         existing_user = Usuario.query.filter_by(email=email).first()
         if existing_user:
             flash("El usuario ya existe. Por favor, inicia sesión.", "warning")
             return redirect(url_for('login'))
+
         nuevo_usuario = Usuario(
             nombre=nombre,
             apellidos=apellidos,
@@ -75,7 +80,7 @@ def register():
         db.session.commit()
         flash("Usuario registrado exitosamente", "success")
         return redirect(url_for('login'))
-    return render_template('register.html')
+    return render_template('register.html', form=form)
 #!--------------------------------------#
 
 
