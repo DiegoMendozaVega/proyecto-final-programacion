@@ -27,7 +27,7 @@ Desde el punto de vista del desarrollo, este proyecto también fue una forma de 
 
 ## Instalación
 ```bash
-git clone https://github.com/usuario/mi-proyecto.git
+git clone https://github.com/DiegoMendozaVega/proyecto-final-programacion.git
 python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
